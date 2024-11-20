@@ -898,7 +898,7 @@ def p4CmdList(cmd, stdin=None, stdin_mode='w+b', cb=None, skip_info=False,
                     decoded_entry[key] = value
                 # Parse out data if it's an error response
                 if decoded_entry.get('code') == 'error' and 'data' in decoded_entry:
-                    decoded_entry['data'] = decoded_entry['data'].decode()
+                    decoded_entry['data'] = metadata_stream_to_writable_bytes(decoded_entry['data'])
                 entry = decoded_entry
             if skip_info:
                 if 'code' in entry and entry['code'] == 'info':
